@@ -5,7 +5,10 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'kategori_barang.dart';
 
 class EditKategoriBarang extends StatefulWidget {
-  const EditKategoriBarang({super.key});
+  final int? id;
+  final String? prevname;
+
+  const EditKategoriBarang({super.key, this.id, this.prevname});
 
   @override
   State<EditKategoriBarang> createState() => _EditKategoriBarangState();
