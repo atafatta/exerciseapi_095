@@ -31,6 +31,18 @@ class _KategoriBarangState extends State<KategoriBarang> {
     });
   }
 
+  void editKategoriBarang(kategori_barang_model kategoriBarang) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditKategoriBarang(
+          kategoriBarang: kategoriBarang,
+        ),
+      ),
+    );
+    getKategoriBarang();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +57,10 @@ class _KategoriBarangState extends State<KategoriBarang> {
               child: ListTile(
                   title: Text(listKategoriBarang[index].nama),
                   trailing: IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.edit))),
+                      onPressed: () {
+                        editKategoriBarang(listKategoriBarang[index]);
+                      },
+                      icon: const Icon(Icons.edit))),
             );
           },
         ),
