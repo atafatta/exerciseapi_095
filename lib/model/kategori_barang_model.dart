@@ -3,27 +3,33 @@ import 'dart:convert';
 
 class kategori_barang_model {
   final String nama;
+  var id;
   kategori_barang_model({
     required this.nama,
+    this.id,
   });
 
   kategori_barang_model copyWith({
     String? nama,
+    int? id,
   }) {
     return kategori_barang_model(
       nama: nama ?? this.nama,
+      id: id ?? this.id,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'nama_kategori_barang': nama,
+      'id_kategori_barang': id,
     };
   }
 
   factory kategori_barang_model.fromMap(Map<String, dynamic> map) {
     return kategori_barang_model(
       nama: map['nama_kategori_barang'] as String,
+      id: map['id_kategori_barang'] as int,
     );
   }
 
