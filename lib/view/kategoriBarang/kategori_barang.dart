@@ -32,18 +32,6 @@ class _KategoriBarangState extends State<KategoriBarang> {
     });
   }
 
-  // void editKategoriBarang(kategori_barang_model kategoriBarang) async {
-  //   await Navigator.push(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => EditKategoriBarang(
-  //         kategoriBarang: kategori_Barang,
-  //       ),
-  //     ),
-  //   );
-  //   getKategoriBarang();
-  // }
-
   void deleteKategoriBarang(kategori_barang_model kategoriBarang) {
     setState(() {
       listKategoriBarang.remove(kategoriBarang);
@@ -66,12 +54,16 @@ class _KategoriBarangState extends State<KategoriBarang> {
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // IconButton(
-                    //   onPressed: () {
-                    //     editKategoriBarang(listKategoriBarang[index]);
-                    //   },
-                    //   icon: const Icon(Icons.edit),
-                    // ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const EditKategoriBarang()));
+                      },
+                      icon: const Icon(Icons.edit),
+                    ),
                     IconButton(
                       onPressed: () {
                         kategoriBarangController
