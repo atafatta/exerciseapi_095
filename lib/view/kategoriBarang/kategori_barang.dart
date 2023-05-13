@@ -32,17 +32,17 @@ class _KategoriBarangState extends State<KategoriBarang> {
     });
   }
 
-  void editKategoriBarang(kategori_barang_model kategoriBarang) async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => EditKategoriBarang(
-          kategoriBarang: kategori_Barang,
-        ),
-      ),
-    );
-    getKategoriBarang();
-  }
+  // void editKategoriBarang(kategori_barang_model kategoriBarang) async {
+  //   await Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) => EditKategoriBarang(
+  //         kategoriBarang: kategori_Barang,
+  //       ),
+  //     ),
+  //   );
+  //   getKategoriBarang();
+  // }
 
   void deleteKategoriBarang(kategori_barang_model kategoriBarang) {
     setState(() {
@@ -66,17 +66,23 @@ class _KategoriBarangState extends State<KategoriBarang> {
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    // IconButton(
+                    //   onPressed: () {
+                    //     editKategoriBarang(listKategoriBarang[index]);
+                    //   },
+                    //   icon: const Icon(Icons.edit),
+                    // ),
                     IconButton(
                       onPressed: () {
-                        editKategoriBarang(listKategoriBarang[index]);
+                        kategoriBarangController
+                            .deleteKategoriBarang(listKategoriBarang[index].id)
+                            .then((value) {
+                          setState(() {
+                            listKategoriBarang.removeAt(index);
+                          });
+                        });
                       },
-                      icon: const Icon(Icons.edit),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        deleteKategoriBarang(listKategoriBarang[index]);
-                      },
-                      icon: const Icon(Icons.delete),
+                      icon: const Icon(Icons.delete_rounded),
                     ),
                   ],
                 ),
