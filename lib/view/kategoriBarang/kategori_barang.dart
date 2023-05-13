@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import '../../controller/kategori_barang_controler.dart';
 import '../../model/kategori_barang_model.dart';
 import 'add_kategori_barang.dart';
+import 'edit_kategori_barang.dart';
 
 class KategoriBarang extends StatefulWidget {
   const KategoriBarang({super.key});
@@ -36,7 +37,7 @@ class _KategoriBarangState extends State<KategoriBarang> {
       context,
       MaterialPageRoute(
         builder: (context) => EditKategoriBarang(
-          kategoriBarang: kategoriBarang,
+          kategoriBarang: kategori_Barang,
         ),
       ),
     );
@@ -55,12 +56,25 @@ class _KategoriBarangState extends State<KategoriBarang> {
           itemBuilder: (context, index) {
             return Card(
               child: ListTile(
-                  title: Text(listKategoriBarang[index].nama),
-                  trailing: IconButton(
+                title: Text(listKategoriBarang[index].nama),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
                       onPressed: () {
                         editKategoriBarang(listKategoriBarang[index]);
                       },
-                      icon: const Icon(Icons.edit))),
+                      icon: const Icon(Icons.edit),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        deleteKategoriBarang(listKategoriBarang[index]);
+                      },
+                      icon: const Icon(Icons.delete),
+                    ),
+                  ],
+                ),
+              ),
             );
           },
         ),
@@ -68,9 +82,11 @@ class _KategoriBarangState extends State<KategoriBarang> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const addKategoriBarang()));
+            context,
+            MaterialPageRoute(
+              builder: (context) => const addKategoriBarang(),
+            ),
+          );
         },
         child: const Icon(Icons.add),
       ),
