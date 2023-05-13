@@ -44,6 +44,12 @@ class _KategoriBarangState extends State<KategoriBarang> {
     getKategoriBarang();
   }
 
+  void deleteKategoriBarang(kategori_barang_model kategoriBarang) {
+    setState(() {
+      listKategoriBarang.remove(kategoriBarang);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
