@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:hivedb/controller/kategori_barang_controler.dart';
 
 import 'kategori_barang.dart';
 
@@ -15,6 +16,8 @@ class EditKategoriBarang extends StatefulWidget {
 }
 
 class _EditKategoriBarangState extends State<EditKategoriBarang> {
+  final kategoriBarangController = BarangController();
+
   String? nama;
 
   @override
@@ -22,7 +25,7 @@ class _EditKategoriBarangState extends State<EditKategoriBarang> {
     var formkey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambah Kategori Barang'),
+        title: const Text('Edit Kategori Barang'),
       ),
       body: Form(
         key: formkey,
@@ -37,6 +40,7 @@ class _EditKategoriBarangState extends State<EditKategoriBarang> {
               onChanged: (value) {
                 nama = value;
               },
+              initialValue: widget.prevname,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Nama Kategori is required';
@@ -49,7 +53,8 @@ class _EditKategoriBarangState extends State<EditKategoriBarang> {
               onPressed: () {
                 if (formkey.currentState!.validate()) {
                   formkey.currentState!.save();
-                  EditKategoriBarang();
+                  kategoriBarangController.updateKategoriBarang(
+                      widget.id!, nama!);
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
