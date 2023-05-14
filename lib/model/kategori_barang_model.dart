@@ -39,15 +39,15 @@ class kategori_barang_model {
       .fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'kategori_barang_model(nama: $nama)';
+  String toString() => 'kategori_barang_model(nama: $nama,id:$id)';
 
   @override
   bool operator ==(covariant kategori_barang_model other) {
     if (identical(this, other)) return true;
 
-    return other.nama == nama;
+    return other.nama == nama && other.id == id;
   }
 
   @override
-  int get hashCode => nama.hashCode;
+  int get hashCode => nama.hashCode ^ id.hashCode;
 }
